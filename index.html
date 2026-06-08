@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>볼알 2026년 북중미 월드컵 쏜다 쏜다 쏜다</title>
+  
+  <!-- Google Fonts - Inter & Noto Sans KR for Notion-like clean typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Notion-style Page Container -->
+  <div class="notion-page">
+    
+    <!-- Notion Header Breadcrumbs -->
+    <header class="notion-breadcrumbs">
+      <span class="breadcrumb-item">🏠 Workspace</span>
+      <span class="breadcrumb-separator">/</span>
+      <span class="breadcrumb-item active">🏆 볼알 2026년 북중미 월드컵 쏜다 쏜다 쏜다</span>
+    </header>
+
+    <!-- Page Icon & Title -->
+    <div class="notion-header">
+      <div class="page-icon">🏆</div>
+      <h1 class="page-title">볼알 2026년 북중미 월드컵 쏜다 쏜다 쏜다</h1>
+    </div>
+
+    <!-- Notion Callout Box (Rules) -->
+    <div class="notion-callout info-callout">
+      <div class="callout-icon">💡</div>
+      <div class="callout-content">
+        <strong>게임 규칙:</strong><br>
+        2026 북중미 월드컵 A조부터 L조까지 12개 조가 있습니다.<br>
+        각 조에서 32강에 진출할 팀을 <strong>조별당 2개에서 3개씩</strong> 선택하고, **전체 선택된 국가의 합이 정확히 32개**가 되어야 완료 및 공유가 가능합니다. (각 조 1, 2위 24개 팀 + 성적이 좋은 3위 8개 팀 = 총 32개 팀)
+      </div>
+    </div>
+
+    <!-- Notion-style Tabs / Page Links -->
+    <nav class="notion-tabs">
+      <button class="tab-button active" onclick="switchTab('creator')">
+        <span class="tab-icon">📝</span> 예측 작성하기
+      </button>
+      <button class="tab-button" onclick="switchTab('comparison')">
+        <span class="tab-icon">📊</span> 모두의 예측 비교
+      </button>
+      <button class="tab-button" onclick="switchTab('leaderboard')">
+        <span class="tab-icon">🏅</span> 결과 및 실시간 순위
+      </button>
+    </nav>
+
+    <!-- TAB 1: Prediction Creator -->
+    <section id="tab-creator" class="tab-content active">
+      <!-- Participant Selector Section -->
+      <div class="notion-section">
+        <h2 class="section-title"><span class="section-icon">👤</span> 1단계: 예측 인물 선택</h2>
+        <p class="section-desc">예측을 작성하는 본인의 이름을 선택하거나 직접 입력하세요.</p>
+        
+        <div class="participant-tags" id="participant-list">
+          <!-- Populated by JS -->
+        </div>
+        
+        <div class="custom-name-input-group" id="custom-name-container" style="display: none;">
+          <input type="text" id="custom-name" placeholder="이름을 입력하세요" maxlength="10">
+          <button class="notion-btn btn-small" onclick="saveCustomName()">적용</button>
+        </div>
+      </div>
+
+      <!-- Groups selection grid -->
+      <div class="notion-section">
+        <div class="section-header-flex">
+          <h2 class="section-title"><span class="section-icon">📋</span> 2단계: 조별 진출팀 선택 (2~3개)</h2>
+          <span class="progress-badge" id="overall-progress">0 / 12 완료</span>
+        </div>
+        
+        <div class="groups-container" id="groups-grid">
+          <!-- Populated by JS (Groups A to L) -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: Comparison Dashboard -->
+    <section id="tab-comparison" class="tab-content">
+      <div class="notion-section">
+        <h2 class="section-title"><span class="section-icon">📊</span> 참여자별 예측 현황</h2>
+        <p class="section-desc">친구들의 예측 링크를 열면 여기에 예측 데이터가 자동으로 누적됩니다.</p>
+        
+        <!-- Import URL manually (backup) -->
+        <div class="notion-callout import-callout">
+          <div class="callout-icon">🔗</div>
+          <div class="callout-content">
+            <span class="callout-label">수동 등록:</span> 카카오톡으로 받은 친구의 공유 링크나 데이터 코드를 붙여넣어 등록하세요.
+            <div class="import-input-group">
+              <input type="text" id="import-link-input" placeholder="공유된 링크 또는 예측 코드 입력">
+              <button class="notion-btn btn-small" onclick="importFromInput()">등록</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="comparison-table-wrapper">
+          <table class="notion-table" id="comparison-matrix">
+            <thead>
+              <tr id="matrix-header">
+                <th>참여자</th>
+                <!-- Groups A to L columns -->
+              </tr>
+            </thead>
+            <tbody id="matrix-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Group Consensus Summary -->
+      <div class="notion-section">
+        <h2 class="section-title"><span class="section-icon">📈</span> 조별 득표 집계 (인기 투표)</h2>
+        <p class="section-desc">우리 그룹 내에서 어떤 팀이 가장 많은 진출 선택을 받았는지 통계를 보여줍니다.</p>
+        <div class="consensus-grid" id="consensus-container">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: Leaderboard & Official Results -->
+    <section id="tab-leaderboard" class="tab-content">
+      <div class="notion-section">
+        <h2 class="section-title"><span class="section-icon">🏅</span> 32강 진출 결과 및 순위</h2>
+        <p class="section-desc">실제 32강 진출팀을 체크하여 우리 그룹의 순위를 실시간으로 확인해보세요!</p>
+        
+        <div class="leaderboard-card">
+          <table class="notion-table" id="leaderboard-table">
+            <thead>
+              <tr>
+                <th style="width: 70px;">순위</th>
+                <th>이름</th>
+                <th style="width: 100px;">맞춘 개수</th>
+                <th style="width: 120px;">진행 상태</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Results Editor -->
+      <div class="notion-section">
+        <div class="section-header-flex">
+          <h2 class="section-title"><span class="section-icon">⚙️</span> 32강 실제 진출국가 입력</h2>
+          <button class="notion-btn btn-small btn-danger" onclick="resetOfficialResults()">초기화</button>
+        </div>
+        <p class="section-desc">각 조에서 실제로 32강에 올라간 나라를 선택해 주세요. (조별 2~3개 선택 가능)</p>
+        
+        <div class="groups-container" id="official-results-grid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Notion-style Notification Toast -->
+  <div id="toast" class="toast">
+    <span id="toast-text">복사되었습니다!</span>
+  </div>
+
+  <!-- Floating Sticky Action Bar for Mobile -->
+  <div class="sticky-action-bar" id="sticky-bar">
+    <div class="bar-info">
+      <div class="bar-user-name" id="sticky-username">선택된 인물 없음</div>
+      <div class="bar-progress" id="sticky-progress">0 / 12 완료</div>
+    </div>
+    <div class="bar-actions">
+      <button class="notion-btn btn-primary" id="btn-share" onclick="sharePredictions()">
+        <span class="btn-icon">🔗</span> 링크 공유
+      </button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,790 @@
+/* ==========================================================================
+   Notion Style Design Tokens & Reset
+   ========================================================================== */
+:root {
+  --notion-bg: #ffffff;
+  --notion-text: #37352f;
+  --notion-text-muted: rgba(55, 53, 47, 0.65);
+  --notion-text-light: rgba(55, 53, 47, 0.45);
+  --notion-border: rgba(55, 53, 47, 0.09);
+  --notion-border-strong: rgba(55, 53, 47, 0.16);
+  --notion-hover-bg: rgba(55, 53, 47, 0.04);
+  --notion-select-bg: rgba(55, 53, 47, 0.08);
+  
+  /* Color Highlights (Notion Style) */
+  --notion-green-bg: #edf6ec;
+  --notion-green-border: #10b981;
+  --notion-green-text: #0f5132;
+  
+  --notion-yellow-bg: #fbf3db;
+  --notion-yellow-text: #664d03;
+  --notion-yellow-border: #f59e0b;
+  
+  --notion-blue-bg: #ebf5f7;
+  --notion-blue-text: #095861;
+  --notion-blue-border: #0ea5e9;
+
+  --notion-red-bg: #fdf2f2;
+  --notion-red-text: #9b1c1c;
+  --notion-red-border: #f87171;
+
+  --font-family: 'Inter', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --transition-speed: 0.2s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: var(--notion-bg);
+  color: var(--notion-text);
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-bottom: 90px; /* Space for mobile sticky action bar */
+  overflow-y: scroll;
+}
+
+/* ==========================================================================
+   Page Structure
+   ========================================================================== */
+.notion-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+@media (max-width: 768px) {
+  .notion-page {
+    padding: 20px 16px;
+  }
+}
+
+/* Breadcrumbs */
+.notion-breadcrumbs {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: var(--notion-text-muted);
+  margin-bottom: 24px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.breadcrumb-item {
+  cursor: pointer;
+}
+
+.breadcrumb-item:hover {
+  color: var(--notion-text);
+}
+
+.breadcrumb-item.active {
+  color: var(--notion-text);
+  font-weight: 500;
+  cursor: default;
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+  color: var(--notion-text-light);
+}
+
+/* Header & Icon */
+.notion-header {
+  margin-bottom: 20px;
+}
+
+.page-icon {
+  font-size: 72px;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  user-select: none;
+}
+
+.page-title {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #191919;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  .page-icon {
+    font-size: 60px;
+  }
+  .page-title {
+    font-size: 30px;
+  }
+}
+
+/* ==========================================================================
+   Notion Components
+   ========================================================================== */
+/* Callout Box */
+.notion-callout {
+  display: flex;
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid var(--notion-border);
+  margin-bottom: 28px;
+  font-size: 15px;
+}
+
+.callout-icon {
+  font-size: 20px;
+  margin-right: 12px;
+  flex-shrink: 0;
+  line-height: 1.3;
+}
+
+.callout-content {
+  flex-grow: 1;
+  line-height: 1.6;
+}
+
+.info-callout {
+  background-color: var(--notion-hover-bg);
+}
+
+.import-callout {
+  background-color: var(--notion-yellow-bg);
+  border-color: rgba(245, 158, 11, 0.2);
+  color: var(--notion-yellow-text);
+  margin-bottom: 20px;
+}
+
+.import-input-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  max-width: 500px;
+}
+
+.import-input-group input {
+  flex-grow: 1;
+  padding: 8px 12px;
+  border: 1px solid var(--notion-border-strong);
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font-family);
+}
+
+.import-input-group input:focus {
+  border-color: var(--notion-yellow-border);
+}
+
+.callout-label {
+  font-weight: 700;
+}
+
+/* Buttons */
+.notion-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: var(--notion-text);
+  border: 1px solid var(--notion-border-strong);
+  border-radius: 4px;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: background-color var(--transition-speed), border-color var(--transition-speed);
+  font-family: var(--font-family);
+  user-select: none;
+}
+
+.notion-btn:hover {
+  background-color: var(--notion-hover-bg);
+}
+
+.notion-btn:active {
+  background-color: var(--notion-select-bg);
+}
+
+.btn-small {
+  padding: 4px 10px;
+  font-size: 13px;
+}
+
+.btn-primary {
+  background-color: #2383e2;
+  color: #ffffff;
+  border-color: #2383e2;
+}
+
+.btn-primary:hover {
+  background-color: #1a6ec0;
+}
+
+.btn-primary:active {
+  background-color: #11579b;
+}
+
+.btn-danger {
+  color: var(--notion-red-text);
+  border-color: rgba(155, 28, 28, 0.2);
+}
+
+.btn-danger:hover {
+  background-color: var(--notion-red-bg);
+}
+
+.btn-icon {
+  margin-right: 6px;
+  font-size: 14px;
+}
+
+/* Tabs Navigation */
+.notion-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--notion-border);
+  margin-bottom: 28px;
+  overflow-x: auto;
+  scrollbar-width: none; /* Firefox */
+}
+
+.notion-tabs::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: var(--notion-text-muted);
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-speed), border-color var(--transition-speed);
+  white-space: nowrap;
+  outline: none;
+}
+
+.tab-button:hover {
+  color: var(--notion-text);
+  background-color: var(--notion-hover-bg);
+}
+
+.tab-button.active {
+  color: var(--notion-text);
+  border-bottom-color: var(--notion-text);
+  font-weight: 600;
+}
+
+.tab-icon {
+  margin-right: 6px;
+}
+
+/* Sections */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.notion-section {
+  margin-bottom: 36px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #191919;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.section-icon {
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+.section-desc {
+  font-size: 14px;
+  color: var(--notion-text-muted);
+  margin-bottom: 16px;
+}
+
+.section-header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-header-flex .section-title {
+  margin-bottom: 0;
+}
+
+/* Participant Selectors */
+.participant-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.participant-tag {
+  background-color: var(--notion-hover-bg);
+  border: 1px solid var(--notion-border);
+  border-radius: 16px;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--notion-text-muted);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+  user-select: none;
+}
+
+.participant-tag:hover {
+  background-color: var(--notion-select-bg);
+  color: var(--notion-text);
+}
+
+.participant-tag.active {
+  background-color: var(--notion-blue-bg);
+  border-color: var(--notion-blue-border);
+  color: var(--notion-blue-text);
+  font-weight: 600;
+}
+
+.participant-tag.add-btn {
+  border-style: dashed;
+}
+
+.custom-name-input-group {
+  display: flex;
+  gap: 8px;
+  max-width: 280px;
+  margin-top: 10px;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.custom-name-input-group input {
+  flex-grow: 1;
+  padding: 6px 12px;
+  border: 1px solid var(--notion-border-strong);
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  font-family: var(--font-family);
+}
+
+.custom-name-input-group input:focus {
+  border-color: #2383e2;
+}
+
+/* Progress Badge */
+.progress-badge {
+  font-size: 13px;
+  font-weight: 600;
+  background-color: var(--notion-hover-bg);
+  padding: 4px 10px;
+  border-radius: 12px;
+  color: var(--notion-text-muted);
+  border: 1px solid var(--notion-border);
+}
+
+.progress-badge.complete {
+  background-color: var(--notion-green-bg);
+  border-color: var(--notion-green-border);
+  color: var(--notion-green-text);
+}
+
+/* ==========================================================================
+   Groups & Selection Grid
+   ========================================================================== */
+.groups-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .groups-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Group Card (Notion Callout Box adaptation) */
+.group-card {
+  background-color: #ffffff;
+  border: 1px solid var(--notion-border);
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.group-card:hover {
+  border-color: var(--notion-border-strong);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+.group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--notion-border);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+}
+
+.group-name {
+  font-size: 16px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.group-status-badge {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: var(--notion-red-bg);
+  color: var(--notion-red-text);
+}
+
+.group-status-badge.valid {
+  background-color: var(--notion-green-bg);
+  color: var(--notion-green-text);
+}
+
+/* Teams Selection List (2x2 grid) */
+.teams-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.team-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--notion-bg);
+  border: 1px solid var(--notion-border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  user-select: none;
+  transition: all var(--transition-speed) ease-in-out;
+  min-height: 48px; /* Safe mobile touch target */
+}
+
+.team-item:hover {
+  background-color: var(--notion-hover-bg);
+  border-color: var(--notion-border-strong);
+}
+
+.team-flag {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.team-name {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.team-check {
+  font-size: 14px;
+  color: var(--notion-text-light);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid var(--notion-border-strong);
+  background-color: #fff;
+  transition: all var(--transition-speed);
+}
+
+/* Selected Team Item State */
+.team-item.selected {
+  background-color: var(--notion-green-bg);
+  border-color: var(--notion-green-border);
+  color: var(--notion-green-text);
+}
+
+.team-item.selected .team-check {
+  background-color: var(--notion-green-border);
+  border-color: var(--notion-green-border);
+  color: #ffffff;
+}
+
+.team-item.selected .team-check::after {
+  content: "✓";
+  font-weight: 700;
+  font-size: 11px;
+}
+
+/* ==========================================================================
+   Comparison Dashboard View
+   ========================================================================== */
+.comparison-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--notion-border);
+  border-radius: 6px;
+  margin-bottom: 28px;
+  background: white;
+}
+
+.notion-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.notion-table th, 
+.notion-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--notion-border);
+  vertical-align: middle;
+}
+
+.notion-table th {
+  background-color: var(--notion-hover-bg);
+  font-weight: 600;
+  color: var(--notion-text-muted);
+  font-size: 13px;
+  border-bottom: 2px solid var(--notion-border);
+  white-space: nowrap;
+}
+
+.notion-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.notion-table tbody tr:hover {
+  background-color: rgba(55, 53, 47, 0.02);
+}
+
+.table-cell-picks {
+  font-size: 13px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.table-flag-pill {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--notion-hover-bg);
+  border: 1px solid var(--notion-border);
+  border-radius: 12px;
+  padding: 2px 6px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+  font-size: 12px;
+}
+
+.table-flag-pill.correct {
+  background-color: var(--notion-green-bg);
+  border-color: var(--notion-green-border);
+  color: var(--notion-green-text);
+  font-weight: 500;
+}
+
+.table-flag-pill.incorrect {
+  background-color: var(--notion-red-bg);
+  border-color: var(--notion-red-border);
+  color: var(--notion-red-text);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* Consensus Grid */
+.consensus-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 900px) {
+  .consensus-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .consensus-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.consensus-card {
+  border: 1px solid var(--notion-border);
+  border-radius: 6px;
+  padding: 14px;
+  background-color: #ffffff;
+}
+
+.consensus-group-name {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--notion-border);
+  padding-bottom: 6px;
+}
+
+.consensus-team-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.consensus-team-row:last-child {
+  margin-bottom: 0;
+}
+
+.consensus-team-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.consensus-votes {
+  font-weight: 600;
+  color: var(--notion-blue-text);
+  background-color: var(--notion-blue-bg);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.consensus-votes.zero {
+  color: var(--notion-text-light);
+  background-color: var(--notion-hover-bg);
+}
+
+/* ==========================================================================
+   Leaderboard Card & Styles
+   ========================================================================== */
+.leaderboard-card {
+  border: 1px solid var(--notion-border);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+  margin-bottom: 24px;
+}
+
+.rank-first {
+  font-weight: 700;
+  color: var(--notion-yellow-text);
+  background-color: var(--notion-yellow-bg);
+  border-radius: 4px;
+  display: inline-block;
+  padding: 1px 8px;
+}
+
+/* ==========================================================================
+   Toast Notification
+   ========================================================================== */
+.toast {
+  position: fixed;
+  bottom: 100px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background-color: #2f3437;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10000;
+  opacity: 0;
+  transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+/* ==========================================================================
+   Sticky Bottom Action Bar
+   ========================================================================== */
+.sticky-action-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--notion-border);
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 999;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+  animation: slideUp 0.3s ease-out;
+}
+
+.bar-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar-user-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--notion-text);
+}
+
+.bar-progress {
+  font-size: 12px;
+  color: var(--notion-text-muted);
+}
+
+.bar-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* ==========================================================================
+   Animations
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
